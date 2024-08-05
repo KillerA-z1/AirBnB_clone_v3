@@ -7,8 +7,13 @@ from models import storage
 
 
 @app_views.route('/status', methods=['GET'], strict_slashes=False)
-def get_status():
+def api_status():
     """ Returns the status of the API """
+    return jsonify({"status": "OK"})
+def get_stats():
+    """
+    Retrieves the number of each objects by type
+    """
     stats = {
         "amenities": storage.count("Amenity"),
         "cities": storage.count("City"),
@@ -17,4 +22,5 @@ def get_status():
         "states": storage.count("State"),
         "users": storage.count("User")
     }
-    return jsonify({"status": "OK"})
+    return jsonify(stats)
+
