@@ -10,6 +10,8 @@ from models import storage
 def api_status():
     """ Returns the status of the API """
     return jsonify({"status": "OK"})
+
+
 def get_stats():
     """
     Retrieves the number of each objects by type
@@ -23,4 +25,3 @@ def get_stats():
         "users": storage.count("User")
     }
     return jsonify(stats)
-
