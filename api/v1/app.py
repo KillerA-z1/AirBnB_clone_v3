@@ -5,10 +5,12 @@ from flask import Flask, jsonify, make_response
 from models import storage
 from api.v1.views import app_views
 import os
+from flask_cors import CORS
 
 app = Flask(__name__)
 
 app.register_blueprint(app_views)
+CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
 
 
 @app.teardown_appcontext
@@ -17,7 +19,7 @@ def teardown_db(exception):
     Function to close the database connection after each request.
 
     Args:
-            exception: The exception raised during the request.
+            exceptions: The exception raised during the request.
 
     Returns:
             None
